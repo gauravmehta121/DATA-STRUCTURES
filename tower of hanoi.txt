@@ -1,0 +1,19 @@
+tower of hanoi problem
+
+void tower of hanoi( int n, char from_rod,char to-road,char auxr-road)
+{
+if(n==1)
+{
+printf("\n move disk 1 to from rod %c to rod%c,from_rod,to_rod);
+return ;
+}
+towerofhanoi(n-1,from_rod,aux_rod,to_rod);
+printf("\n move disk %d from rod%c to rod %c",n,from_rod,to_rod);
+towerofhanoi(n-1,aux_rod,to_rod,from_rod);
+}
+ int main()
+{
+int n=4;
+towerofhanoi(n,'A','B','C');
+return 0;
+}
