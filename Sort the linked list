@@ -1,0 +1,120 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+struct node
+{
+    int data;
+    struct node *link;
+};
+ 
+struct node *head = NULL, *next, *prev, *z;
+ 
+void create();
+void display();
+void sort();
+
+ 
+void main()
+{
+    int ch;
+ 
+    
+    while (1)
+    {
+    	printf("\n 1.Creation \n 2.sort\n3.Exit\n");
+        printf("\n Enter your choice:");
+        scanf("%d", &ch);
+        switch(ch)
+        {
+        case 1:
+            create(); 
+            display();
+            break;
+        case 2:
+            sort();
+            display();
+            break;
+
+        case 3:
+           exit(0);
+        default:
+            printf("wrong args");
+        }
+    }
+}
+ 
+/*Function to create a new circular linked list*/
+void create()
+{
+    int c,i;
+ 
+    next = (struct node*)malloc(sizeof(struct node));
+    printf("\n Enter head node data:");
+    scanf("%d", &next->data);
+    next->link = next;
+    head = next;
+    printf("\n Enter no of terms:");
+    scanf("%d", &c);
+    for (i = 0 ; i < c ; i++)
+    {
+        prev = (struct node*)malloc(sizeof(struct node));
+        printf("\n Enter the data:");
+        scanf("%d", &prev->data);
+        next->link = prev;
+        prev->link = head;
+        next = prev;
+
+    }
+}
+
+void display()
+{
+	next = head;
+	while(next->link != head)
+	{
+		printf("\t%d",next->data);
+		next = next->link;
+	}
+	printf("\t%d",next->data);
+}
+ 
+ 
+/*Function to sort the list in ascending order*/
+ 
+void sort()
+{
+    struct node *ptr, *nxt;
+    int temp;
+ 
+    if (head == NULL)
+    {
+        printf("empty linkedlist");
+    }
+    else
+    {
+        ptr = head;
+        while (ptr->link !=  head)
+        {
+            nxt = ptr->link;
+            while (nxt !=  head)
+            {
+                if (nxt !=  head)
+                {
+                    if (ptr->data > nxt->data)
+                    {
+                        temp = ptr->data;
+                        ptr->data = nxt->data;
+                        nxt->data = temp;
+                    }
+                }
+                else
+                {
+                    break;
+                }
+                nxt = nxt->link;
+            }
+            ptr = ptr->link;
+        }
+    }
+}
+ 
